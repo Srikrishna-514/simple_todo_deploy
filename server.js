@@ -1,19 +1,28 @@
+const dns = require("node:dns");
+
+dns.setServers(["8.8.8.8"]);
+require("dotenv").config();
+
+// const mongoose = require("mongoose");
 const express = require("express");
-const router = require("./Routers/todo_router.js");
 const { connectDB } = require("./Config/db.js");
-const { todoModel } = require("./Models/todo_models.js");
+const router = require("./Routers/todo_router.js");
 const app = express();
-connectDB();
-//middleWare
+
+// Middleware
 app.use(express.json());
-app.use(express.urlencoded());
-//apis
+app.use(express.urlencoded({ extended: true }));
+
+// Connect to MongoDB
+connectDB();
+
+// APIs
 app.use("/api/todos", router);
-//default Api
+
 app.get("/", (req, res) => {
   res.send("default");
 });
 
 app.listen(3000, () => {
-  console.log("server is running on 3000");
+  console.log("Server is running on port 3000");
 });
