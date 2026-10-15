@@ -20,7 +20,7 @@ const getTodos = async (req, res) => {
     const getTodoViaId = await todoModel.findById(id);
     if (!getTodoViaId) {
       return res.status(404).json({
-        message: "Todo not found",
+        message: "Todo not is found",
       });
     }
     res.status(200).json({
