@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const dns = require("node:dns");
 dns.setServers(["8.8.8.8"]);
-
+const cors = require("cors");
 const express = require("express");
 const { connectDB } = require("./Config/db.js");
 const router = require("./Routers/todo_router.js");
@@ -11,7 +11,12 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+//CORS middleware
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  }),
+);
 app.get("/", (req, res) => {
   res.send("Default API");
 });
