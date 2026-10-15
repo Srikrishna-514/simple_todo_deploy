@@ -20,7 +20,7 @@ connectDB();
 app.use("/api/todos", router);
 
 app.get("/", (req, res) => {
-  res.send("default");
+  res.send("default Api");
 });
 
 app.listen(3000, () => {
