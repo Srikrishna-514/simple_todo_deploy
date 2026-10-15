@@ -10,7 +10,7 @@ const getAllTodos = async (req, res) => {
 };
 const getTodos = async (req, res) => {
   try {
-    const { id } = req.params.id;
+    const { id } = req.params;
     const getTodoViaId = await todoModel.findById(id);
     if (!getTodoViaId) {
       return res.status(404).json({
@@ -38,7 +38,7 @@ const postTodos = async (req, res) => {
 
 const updateTodos = async (req, res) => {
   try {
-    const { id } = req.params.id;
+    const { id } = req.params;
     const updateData = await todoModel.findByIdAndUpdate(id, req.body, {
       returnDocument: "after",
       runValidators: true,
@@ -63,7 +63,7 @@ const updateTodos = async (req, res) => {
 
 const deleteTodos = async (req, res) => {
   try {
-    const { id } = req.params.id;
+    const { id } = req.params;
     const deleteData = await todoModel.findByIdAndDelete(id);
 
     if (!deleteData) {
