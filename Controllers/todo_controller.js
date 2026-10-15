@@ -1,11 +1,17 @@
 const { todoModel } = require("../Models/todo_models.js");
 const getAllTodos = async (req, res) => {
   try {
-    const todoData = await todoModel.find();
+    console.log("Before find()");
+    console.log("Ready state:", todoModel.db.readyState);
+    console.log("Collection:", todoModel.collection.name);
 
-    res.status(200).json({ message: "todo added successfully", inf: todoData });
+    const todos = await todoModel.find().exec();
+
+    console.log("After find(), count:", todos.length);
+    res.status(200).json({ data: todos });
   } catch (error) {
-    res.status(400).send(error.message);
+    console.error("FIND ERROR:", error.stack || error.message);
+    res.status(500).json({ error: error.message });
   }
 };
 const getTodos = async (req, res) => {
