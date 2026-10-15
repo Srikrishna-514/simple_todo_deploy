@@ -14,10 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 //cors middleWare
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://simple-todo-five-tan.vercel.app/",
-    ],
+    origin: "https://simple-todo-five-tan.vercel.app",
   }),
 );
 app.get("/", (req, res) => {
