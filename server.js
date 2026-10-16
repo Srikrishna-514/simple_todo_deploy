@@ -1,5 +1,5 @@
-require("dotenv").config();
-
+const dotenv = require("dotenv");
+dotenv.config();
 const dns = require("node:dns");
 dns.setServers(["8.8.8.8"]);
 const cors = require("cors");
@@ -8,7 +8,6 @@ const { connectDB } = require("./Config/db.js");
 const router = require("./Routers/todo_router.js");
 
 const app = express();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 //cors middleWare
